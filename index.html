@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Shweta!</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .serif-title { font-family: 'Playfair Display', serif; }
+    
+    .polaroid-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    @keyframes barBounce {
+      0%, 100% { height: 4px; }
+      50% { height: 16px; }
+    }
+    .animate-bar-1 { animation: barBounce 1s infinite ease-in-out; }
+    .animate-bar-2 { animation: barBounce 1.2s infinite ease-in-out 0.2s; }
+    .animate-bar-3 { animation: barBounce 0.8s infinite ease-in-out 0.4s; }
+  </style>
+</head>
+<body class="bg-[#FAF8F5] text-stone-800 antialiased selection:bg-rose-100 selection:text-rose-900 pb-28">
+
+  <!-- Audio Element: bairan.mp3 -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="bairan.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating Music Toggle -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="musicToggleBtn" onclick="toggleAudio()" class="flex items-center gap-2.5 px-4 py-2.5 bg-stone-900/90 hover:bg-stone-900 text-white backdrop-blur-md rounded-full shadow-lg border border-white/10 active:scale-95 transition-all">
+      <div id="soundbars" class="flex items-end gap-0.5 h-4 opacity-50">
+        <span class="w-0.5 bg-rose-400 rounded-full h-1"></span>
+        <span class="w-0.5 bg-rose-400 rounded-full h-1"></span>
+        <span class="w-0.5 bg-rose-400 rounded-full h-1"></span>
+      </div>
+      <span id="musicStatusText" class="text-xs font-medium tracking-wide">♫ Play "Bairan"</span>
+    </button>
+  </div>
+
+  <!-- 1. Hero Section -->
+  <header class="min-h-[75vh] flex flex-col justify-center items-center text-center px-6 py-16">
+    <span class="text-xs uppercase tracking-widest text-rose-500 font-semibold mb-3">A small archive for someone special</span>
+    <h1 class="serif-title text-4xl sm:text-5xl font-semibold text-stone-900 leading-tight mb-4">
+      Happy Birthday, <br class="sm:hidden" />
+      <span class="italic text-rose-600">Shweta Payasi</span> ✨
+    </h1>
+    <p class="max-w-md text-stone-600 text-sm sm:text-base mb-8 leading-relaxed">
+      From 2019 to now—a collection of places, chaos, live moments, and memories.
+    </p>
+    <button onclick="launchCelebration()" class="px-7 py-3.5 bg-rose-500 hover:bg-rose-600 active:scale-95 transition-all text-white font-medium rounded-full shadow-md shadow-rose-200 text-sm flex items-center gap-2">
+      <span>🎉</span>
+      <span>Tap to Celebrate</span>
+    </button>
+  </header>
+
+  <!-- 2. Spotlight Videos -->
+  <section class="max-w-3xl mx-auto px-6 py-6">
+    <div class="text-center mb-8">
+      <span class="text-[11px] font-bold uppercase tracking-widest text-rose-400">Live Moments</span>
+      <h2 class="serif-title text-2xl sm:text-3xl text-stone-900 mt-1">The Spotlight</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <!-- Video 1 (spotlight1.MP4) -->
+      <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-stone-200/80 -rotate-1 hover:rotate-0 transition-transform duration-300">
+        <div class="w-full h-80 rounded-xl overflow-hidden mb-3 bg-stone-100">
+          <video 
+            src="spotlight1.MP4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            class="w-full h-full object-cover">
+          </video>
+        </div>
+        <p class="text-center text-xs text-stone-700 italic font-medium">Quick glance, timeless memory ✨</p>
+      </div>
+
+      <!-- Video 2 (spotlight2.mp4) -->
+      <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-stone-200/80 rotate-1 hover:rotate-0 transition-transform duration-300">
+        <div class="w-full h-80 rounded-xl overflow-hidden mb-3 bg-stone-100">
+          <video 
+            src="spotlight2.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            controls 
+            class="w-full h-full object-cover">
+          </video>
+        </div>
+        <p class="text-center text-xs text-stone-700 italic font-medium">Unfiltered laughter in motion 🎥</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The 16 Moments Wall -->
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <div class="text-center mb-10">
+      <span class="text-[11px] font-bold uppercase tracking-widest text-rose-400">Memories</span>
+      <h2 class="serif-title text-2xl sm:text-3xl text-stone-900 mt-1">16 Frames of You</h2>
+      <p class="text-stone-500 text-xs sm:text-sm mt-1">Glimpses of all the smiles, trips, and candid chaos.</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo1.jpg" class="polaroid-img" alt="Memory 1"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo2.jpg" class="polaroid-img" alt="Memory 2"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo3.jpg" class="polaroid-img" alt="Memory 3"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo4.jpg" class="polaroid-img" alt="Memory 4"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo5.jpg" class="polaroid-img" alt="Memory 5"></div>
+      
+      <!-- Photo 6 (photo6.png) -->
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo6.png" class="polaroid-img" alt="Memory 6"></div>
+
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo7.jpg" class="polaroid-img" alt="Memory 7"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo8.jpg" class="polaroid-img" alt="Memory 8"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo9.jpg" class="polaroid-img" alt="Memory 9"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo10.jpg" class="polaroid-img" alt="Memory 10"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo11.jpg" class="polaroid-img" alt="Memory 11"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo12.jpg" class="polaroid-img" alt="Memory 12"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo13.jpg" class="polaroid-img" alt="Memory 13"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo14.jpg" class="polaroid-img" alt="Memory 14"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo15.jpg" class="polaroid-img" alt="Memory 15"></div>
+      <div class="bg-white p-2.5 rounded-xl shadow-xs border border-stone-200/80"><img src="photo16.jpg" class="polaroid-img" alt="Memory 16"></div>
+    </div>
+  </section>
+
+  <!-- 4. Pinned on the Map (The 4 Places) -->
+  <section class="max-w-xl mx-auto px-6 py-12">
+    <div class="text-center mb-8">
+      <span class="text-[11px] font-bold uppercase tracking-widest text-rose-400">Chapters & Spots</span>
+      <h2 class="serif-title text-2xl sm:text-3xl text-stone-900 mt-1">Pinned on the Map</h2>
+      <p class="text-stone-500 text-xs sm:text-sm mt-1">Every spot where the story unfolded.</p>
+    </div>
+
+    <div class="space-y-3.5">
+      <div class="p-4 bg-white rounded-xl border border-stone-200/80 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-rose-500 tracking-wider">1st Met • 2019</span>
+          <h4 class="text-sm font-semibold text-stone-900">Super 100</h4>
+          <p class="text-xs text-stone-500 mt-0.5">Where it all started</p>
+        </div>
+        <span class="text-xl">🌱</span>
+      </div>
+
+      <div class="p-4 bg-white rounded-xl border border-stone-200/80 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-rose-500 tracking-wider">2nd Met</span>
+          <h4 class="text-sm font-semibold text-stone-900">Satna Indian Coffee House</h4>
+          <p class="text-xs text-stone-500 mt-0.5">Coffee, catching up & good talks</p>
+        </div>
+        <span class="text-xl">☕</span>
+      </div>
+
+      <div class="p-4 bg-white rounded-xl border border-stone-200/80 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-rose-500 tracking-wider">3rd Met</span>
+          <h4 class="text-sm font-semibold text-stone-900">Banaras</h4>
+          <p class="text-xs text-stone-500 mt-0.5">Ghats, unhurried evenings & unforgettable vibes</p>
+        </div>
+        <span class="text-xl">🪔</span>
+      </div>
+
+      <div class="p-4 bg-white rounded-xl border border-stone-200/80 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-rose-500 tracking-wider">4th Met</span>
+          <h4 class="text-sm font-semibold text-stone-900">Satna Zudio</h4>
+          <p class="text-xs text-stone-500 mt-0.5">Shopping rounds & spontaneous fun</p>
+        </div>
+        <span class="text-xl">🛍️</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Heartfelt Note -->
+  <section class="max-w-xl mx-auto px-6 py-12 mb-8">
+    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-rose-100 shadow-sm relative overflow-hidden">
+      <div class="absolute -right-8 -bottom-8 w-28 h-28 bg-rose-50 rounded-full pointer-events-none"></div>
+      
+      <span class="text-xs font-semibold text-rose-500 uppercase tracking-widest">Special Message</span>
+      <h2 class="serif-title text-xl sm:text-2xl text-stone-900 mt-1 mb-4">Hello My Guardian Angel 🦁</h2>
+      
+      <p class="text-stone-600 text-sm leading-relaxed mb-4">
+        Happy birthday to you! Well, I want to write too much, but my history with paragraphs is not that great, so here it goes:
+      </p>
+      
+      <blockquote class="p-4 bg-rose-50/70 rounded-xl border-l-4 border-rose-400 my-4 text-stone-800 text-sm font-medium leading-relaxed italic">
+        "Everything is cool but can I carry your phone, lipgloss, your stress, heels when you wear traditional dress and Especially you 😍🤗"
+      </blockquote>
+
+      <div class="text-right mt-6">
+        <span class="serif-title text-sm italic font-semibold text-stone-800">— Always cheering for you</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    const audio = document.getElementById('bgMusic');
+    const soundbars = document.getElementById('soundbars');
+    const musicText = document.getElementById('musicStatusText');
+    const bars = soundbars.querySelectorAll('span');
+
+    function launchCelebration() {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+
+      if (audio.paused) {
+        startAudio();
+      }
+    }
+
+    function toggleAudio() {
+      if (audio.paused) {
+        startAudio();
+      } else {
+        pauseAudio();
+      }
+    }
+
+    function startAudio() {
+      audio.play().then(() => {
+        musicText.innerText = "♫ Playing Bairan";
+        soundbars.classList.remove('opacity-50');
+        bars[0].classList.add('animate-bar-1');
+        bars[1].classList.add('animate-bar-2');
+        bars[2].classList.add('animate-bar-3');
+      }).catch(err => {
+        console.log("Audio playback:", err);
+      });
+    }
+
+    function pauseAudio() {
+      audio.pause();
+      musicText.innerText = "♫ Play Bairan";
+      soundbars.classList.add('opacity-50');
+      bars[0].classList.remove('animate-bar-1');
+      bars[1].classList.remove('animate-bar-2');
+      bars[2].classList.remove('animate-bar-3');
+    }
+  </script>
+</body>
+</html>
